@@ -144,7 +144,7 @@ parser.add_argument("--test-CVE-2022-42889",
 parser.add_argument("--dns-callback-provider",
                     dest="dns_callback_provider",
                     help="DNS Callback provider (Options: dnslog.cn, interact.sh) - [Default: interact.sh].",
-                    default="interact.sh",
+                    default="oast.sh",
                     action='store')
 parser.add_argument("--custom-dns-callback-host",
                     dest="custom_dns_callback_host",
@@ -240,7 +240,7 @@ class Interactsh:
         self.public_key = rsa.publickey().exportKey()
         self.private_key = rsa.exportKey()
         self.token = token
-        self.server = server.lstrip('.') or 'interact.sh'
+        self.server = server.lstrip('.') or 'oast.fun'
         self.headers = {
             "Content-Type": "application/json",
         }
@@ -403,7 +403,7 @@ def main():
         dns_callback_host = args.custom_dns_callback_host
     else:
         cprint(f"[•] Initiating DNS callback server ({args.dns_callback_provider}).")
-        if args.dns_callback_provider == "interact.sh":
+        if args.dns_callback_provider == "oast.fun":
             dns_callback = Interactsh()
         elif args.dns_callback_provider == "dnslog.cn":
             dns_callback = Dnslog()
